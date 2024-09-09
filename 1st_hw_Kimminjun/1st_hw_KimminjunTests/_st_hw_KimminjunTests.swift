@@ -1,14 +1,14 @@
 //
-//  _st_hw_KimminjunTests.swift
-//  1st_hw_KimminjunTests
+//  _st_hw_KimMinjunTests.swift
+//  1st_hw_KimMinjunTests
 //
-//  Created by 김민준 on 9/8/24.
+//  Created by 김민준 on 3/21/24.
 //
 
 import XCTest
-@testable import _st_hw_Kimminjun
+@testable import _st_hw_KimMinjun
 
-final class _st_hw_KimminjunTests: XCTestCase {
+final class _st_hw_KimMinjunTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

@@ -1,13 +1,13 @@
 //
-//  _st_hw_KimminjunUITestsLaunchTests.swift
-//  1st_hw_KimminjunUITests
+//  _st_hw_KimMinjunUITestsLaunchTests.swift
+//  1st_hw_KimMinjunUITests
 //
-//  Created by 김민준 on 9/8/24.
+//  Created by 김민준 on 3/21/24.
 //
 
 import XCTest
 
-final class _st_hw_KimminjunUITestsLaunchTests: XCTestCase {
+final class _st_hw_KimMinjunUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
