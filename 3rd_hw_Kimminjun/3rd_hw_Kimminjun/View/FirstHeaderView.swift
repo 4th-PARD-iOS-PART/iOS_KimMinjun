@@ -31,7 +31,7 @@ class FirstHeaderView : UIView {
         config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
         config.baseForegroundColor = .black
         let playButton = UIButton(configuration: config)
-        playButton.titleLabel?.font = UIFont.systemFont(ofSize: 20.46, weight: .semibold)
+        playButton.titleLabel?.font = UIFont.systemFont(ofSize: 20.46, weight: .bold)
         playButton.translatesAutoresizingMaskIntoConstraints = false
         return playButton
     }()
@@ -50,7 +50,7 @@ class FirstHeaderView : UIView {
             config.image = scaledImage
         }
         var text = AttributedString.init("My List")
-        text.foregroundColor = #colorLiteral(red: 0.4509803653, green: 0.4509803653, blue: 0.4509803653, alpha: 1)
+        text.foregroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         text.font = UIFont.systemFont(ofSize: 15 , weight: .light)
         config.attributedTitle = text
         let button = UIButton(configuration: config)
@@ -74,7 +74,7 @@ class FirstHeaderView : UIView {
             config.image = scaledImage
         }
         var text = AttributedString.init("Info")
-        text.foregroundColor = #colorLiteral(red: 0.4509803653, green: 0.4509803653, blue: 0.4509803653, alpha: 1)
+        text.foregroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         text.font = UIFont.systemFont(ofSize: 14 , weight: .light)
         config.attributedTitle = text
         let button = UIButton(configuration: config)
@@ -112,11 +112,7 @@ class FirstHeaderView : UIView {
         return view
     }()
     
-    let ButtonViews : UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+   
     
   
     required init?(coder: NSCoder) {
@@ -131,15 +127,14 @@ class FirstHeaderView : UIView {
     
     func setUI(){
         self.addSubview(heroImageView)
-        self.addSubview(ButtonViews)
         self.addSubview(headerButtonViews)
         headerButtonViews.addSubview(logoImageView)
         headerButtonViews.addSubview(headerbutton1)
         headerButtonViews.addSubview(headerbutton2)
         headerButtonViews.addSubview(headerbutton3)
-        ButtonViews.addSubview(myListButton)
-        ButtonViews.addSubview(playButton)
-        ButtonViews.addSubview(infoButton)
+        self.addSubview(myListButton)
+        self.addSubview(playButton)
+        self.addSubview(infoButton)
     
         
         NSLayoutConstraint.activate([
@@ -148,20 +143,15 @@ class FirstHeaderView : UIView {
             headerButtonViews.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             headerButtonViews.topAnchor.constraint(equalTo: self.topAnchor),
             
-            ButtonViews.centerXAnchor.constraint(equalTo: centerXAnchor),
-            ButtonViews.topAnchor.constraint(equalTo: headerButtonViews.bottomAnchor, constant: 324),
-            
-            
             heroImageView.topAnchor.constraint(equalTo: self.topAnchor),
             heroImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             heroImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             heroImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             
-            logoImageView.leadingAnchor.constraint(equalTo: headerButtonViews.leadingAnchor, constant: 10),
-            logoImageView.topAnchor.constraint(equalTo: headerButtonViews.topAnchor, constant: 10),
+            logoImageView.leadingAnchor.constraint(equalTo: headerButtonViews.leadingAnchor, constant: 20),
+            logoImageView.topAnchor.constraint(equalTo: headerButtonViews.topAnchor, constant: 12),
             logoImageView.widthAnchor.constraint(equalToConstant: 20),
             logoImageView.heightAnchor.constraint(equalToConstant: 39),
-            
             
             headerbutton1.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
             headerbutton1.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor ,constant: 23 ),
@@ -173,15 +163,15 @@ class FirstHeaderView : UIView {
             headerbutton3.leadingAnchor.constraint(equalTo: headerbutton2.trailingAnchor, constant: 40),
             headerbutton3.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
 
-            
-            myListButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 54),
+            myListButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 52),
             myListButton.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 324),
         
-            playButton.bottomAnchor.constraint(equalTo: self.bottomAnchor , constant: -35),
-            playButton.leadingAnchor.constraint(equalTo: myListButton.trailingAnchor , constant: 42 ),
+            playButton.widthAnchor.constraint(equalToConstant: 134),
+            playButton.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 324),
+            playButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             infoButton.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 324),
-            infoButton.leadingAnchor.constraint(equalTo: playButton.trailingAnchor, constant: 41),
+            infoButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -64),
 
         ])
     }

@@ -6,14 +6,12 @@ class FirstViewController : UIViewController{
     let sectionTitles : [String] = ["Popular on Netflix","Trending Now", "Top 10 in Nigeria Today","My List", "African Movies","Nollywood Movies & Tv"]
    
     let tableView : UITableView = {
-        let table = UITableView()
+        let table = UITableView(frame: .zero, style: .grouped)
         table.backgroundColor = .black
         table.translatesAutoresizingMaskIntoConstraints = false
-        
-        
         //section 간격 없애기
         if #available(iOS 15.0, *) {
-            table.sectionHeaderTopPadding = 10
+            table.sectionHeaderTopPadding = 11
             }
         return table
     }()
@@ -26,6 +24,8 @@ class FirstViewController : UIViewController{
         view.backgroundColor = .black
         deleteColorNavTab()
         setUI()
+        navigationController?.setNavigationBarHidden(true, animated: false)
+
     }
     
     func setUI(){
@@ -66,10 +66,11 @@ class FirstViewController : UIViewController{
 
 
 extension FirstViewController : UITableViewDelegate, UITableViewDataSource{
+    //행의 개수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
+    // cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "firstCell", for: indexPath) as?
                 FirstViewCell else { return UITableViewCell() }
