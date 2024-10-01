@@ -52,7 +52,6 @@ class ForthViewController : UIViewController{
         NSLayoutConstraint.activate([
             
             downloadImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 100),
-//            downloadImage.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             downloadImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             downloadMessege.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -60,7 +59,7 @@ class ForthViewController : UIViewController{
             
             downloadButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             downloadButton.topAnchor.constraint(equalTo: downloadMessege.bottomAnchor, constant: 84),
-//            downloadImage.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor ,constant: -92)
+
             
             
         ])
