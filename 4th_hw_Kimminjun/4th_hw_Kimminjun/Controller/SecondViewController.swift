@@ -16,10 +16,11 @@ class SecondViewController : UIViewController{
         search.updateHeight(height: 48)
         search.searchTextField.leftView?.tintColor = .lightGray
         
-        let micImageView = UIImageView(image: UIImage(named: "plus"))
+        let micImageView = UIImageView(image: UIImage(named: "mic"))
         micImageView.tintColor = .lightGray
         micImageView.contentMode = .scaleAspectFit
-        micImageView.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
+        micImageView.translatesAutoresizingMaskIntoConstraints = false
+//        micImageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         search.searchTextField.rightView = micImageView
         search.searchTextField.rightViewMode = .always
         
