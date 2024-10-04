@@ -16,14 +16,21 @@ class SecondViewController : UIViewController{
         search.updateHeight(height: 48)
         search.searchTextField.leftView?.tintColor = .lightGray
         
-        let micImageView = UIImageView(image: UIImage(named: "mic"))
-        micImageView.tintColor = .lightGray
-        micImageView.contentMode = .scaleAspectFit
-        micImageView.translatesAutoresizingMaskIntoConstraints = false
-//        micImageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        search.searchTextField.rightView = micImageView
-        search.searchTextField.rightViewMode = .always
+    
         
+        let micButton = UIButton(type: .custom)
+            micButton.setImage(UIImage(named: "mic")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            micButton.tintColor = .lightGray
+            micButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+
+            // 우측 뷰 설정
+            let rightViewContainer = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 20))
+            rightViewContainer.addSubview(micButton)
+            micButton.center = rightViewContainer.center
+
+            // searchTextField에 rightView 설정
+            search.searchTextField.rightView = rightViewContainer
+            search.searchTextField.rightViewMode = .always
         return search
     }()
     
@@ -75,6 +82,17 @@ class SecondViewController : UIViewController{
             
         ])
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print("Right view frame: \(searchBar.searchTextField.rightView?.frame)")
+        print("Right view is hidden: \(searchBar.searchTextField.rightView?.isHidden)")
+        print("Right view mode: \(searchBar.searchTextField.rightViewMode)")
+        
+
+    }
+    
     
         
 }
