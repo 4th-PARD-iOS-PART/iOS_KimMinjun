@@ -1,11 +1,10 @@
-# 과제 3 
-----
-- ViewController에서 탭바를 만들었습니다.
-- TableView 를 만들고 HeaderView를 만들어 컴포넌트를 올렸습니다.
-- TableView의 각 섹션당 cell을 한 개로 하고 거기에 CollectionView를 넣었습니다.
+# 과제 4 입니다.
+--- 
 
-----
+iPhone 16 pro로 시뮬레이터 돌렸습니다. 
+UITableView를 사용해 만들었습니다. 
 
+<img src="https://github.com/user-attachments/assets/60465fd9-6d5e-40bd-955c-50a3a9b64f0e" width="250" height="600">
+<img src="https://github.com/user-attachments/assets/4242eed2-5bf0-4eb1-80f7-8e899dd74219" width="250" height="600">
+<img src="https://github.com/user-attachments/assets/93bfb4e2-c069-4c15-be9e-1ae762982ddf" width="250" height="600">
 
-<img src="https://github.com/user-attachments/assets/4fb21f16-f73a-494f-a8be-e588d033b2e6" width ="300" height="600"> 
-<img src="https://github.com/user-attachments/assets/15e0ba13-e4a4-44f1-9ad7-4fa71f2824cb" width ="300" height="600"> 
