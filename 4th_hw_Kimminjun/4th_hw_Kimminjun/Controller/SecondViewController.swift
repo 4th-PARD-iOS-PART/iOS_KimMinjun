@@ -3,36 +3,6 @@ import UIKit
 
 
 class SecondViewController : UIViewController{
-    let searchBar : UISearchBar = {
-        let search = UISearchBar()
-        search.translatesAutoresizingMaskIntoConstraints = false
-        search.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search for a show, movie, genre, e.t.c.", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
-        search.searchTextField.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        search.searchTextField.backgroundColor = #colorLiteral(red: 0.2588235736, green: 0.2588235736, blue: 0.2588235736, alpha: 1)
-        search.searchBarStyle = .minimal
-        search.searchTextField.layer.cornerRadius = 5
-        search.layer.borderWidth = 0
-        search.searchTextField.clipsToBounds = true
-        search.updateHeight(height: 48)
-        search.searchTextField.leftView?.tintColor = .lightGray
-        
-    
-        
-        let micButton = UIButton(type: .custom)
-            micButton.setImage(UIImage(named: "mic")?.withRenderingMode(.alwaysTemplate), for: .normal)
-            micButton.tintColor = .lightGray
-            micButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-
-            // 우측 뷰 설정
-            let rightViewContainer = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 20))
-            rightViewContainer.addSubview(micButton)
-            micButton.center = rightViewContainer.center
-
-            // searchTextField에 rightView 설정
-            search.searchTextField.rightView = rightViewContainer
-            search.searchTextField.rightViewMode = .always
-        return search
-    }()
     
     let tableView : UITableView = {
         let view = UITableView()
@@ -57,6 +27,7 @@ class SecondViewController : UIViewController{
         view.backgroundColor = .black
         setUI()
         setTable()
+        setSearchBar()
     }
     
     func setTable(){
@@ -66,8 +37,6 @@ class SecondViewController : UIViewController{
     }
     
     func setUI(){
-
-        navigationItem.titleView = searchBar
         view.addSubview(mainTitle)
         view.addSubview(tableView)
         
@@ -82,19 +51,34 @@ class SecondViewController : UIViewController{
             
         ])
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        print("Right view frame: \(searchBar.searchTextField.rightView?.frame)")
-        print("Right view is hidden: \(searchBar.searchTextField.rightView?.isHidden)")
-        print("Right view mode: \(searchBar.searchTextField.rightViewMode)")
-        
 
-    }
-    
-    
+    // seach바 설정 함수
+    func setSearchBar() {
+        let searchBar = UISearchBar()
+        searchBar.searchTextField.backgroundColor = #colorLiteral(red: 0.2588235736, green: 0.2588235736, blue: 0.2588235736, alpha: 1)
+        searchBar.searchTextField.textColor = .lightGray
         
+        let placeholderText = NSAttributedString(string: "Search for a show, movie, genre, etc.", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        searchBar.searchTextField.attributedPlaceholder = placeholderText
+        searchBar.searchTextField.leftView?.tintColor = .lightGray
+        
+        if let microphoneImage = UIImage(named: "mic") {
+                let resizedMicrophoneImage = resizeImage(image: microphoneImage, targetSize: CGSize(width: 22, height: 22))
+                searchBar.showsBookmarkButton = true
+                searchBar.setImage(resizedMicrophoneImage, for: .bookmark, state: .normal)
+            }
+        
+        searchBar.updateHeight(height: 48)
+        navigationItem.titleView = searchBar
+       }
+    //이미지 사이즈 재조정 함수
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+        return renderer.image { _ in
+            image.draw(in: CGRect(origin: .zero, size: targetSize))
+        }
+    }
+
 }
 
 //MARK: - tableView
