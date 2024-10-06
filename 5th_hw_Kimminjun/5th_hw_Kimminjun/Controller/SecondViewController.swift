@@ -115,6 +115,12 @@ extension SecondViewController : UITableViewDelegate, UITableViewDataSource{
         maskLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 0, dy: vPadding/2)
         cell.layer.mask = maskLayer
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let modalVC = ModalViewController()
+    
+        self.present(modalVC, animated: true)
+    }
 }
 
 
