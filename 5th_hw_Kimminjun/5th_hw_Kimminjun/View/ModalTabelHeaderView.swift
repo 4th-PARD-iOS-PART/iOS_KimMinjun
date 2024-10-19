@@ -4,6 +4,15 @@ import UIKit
 
 class ModalTabelHeaderView : UIView {
     
+    
+    let tagCell : TagCellView = {
+        let view = TagCellView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
