@@ -1,11 +1,21 @@
-# 과제 4 입니다.
---- 
+# 과제 5 입니다 
+---
 
-iPhone 16 pro로 시뮬레이터 돌렸습니다. 
-UITableView를 사용해 만들었습니다. 
+iPhone 16 Pro로 시뮬레이터 돌렸습니다. 
 
-<img src="https://github.com/user-attachments/assets/3ecb705f-17a0-4186-912d-671da7ed2d83" width="250" height="600">
-<img src="https://github.com/user-attachments/assets/4242eed2-5bf0-4eb1-80f7-8e899dd74219" width="250" height="600">
-<img src="https://github.com/user-attachments/assets/93bfb4e2-c069-4c15-be9e-1ae762982ddf" width="250" height="600">
+SecondViewController의 tableview의 cell을 클릭시 데이터를 가져와서 모달창을 뜨게 했습니다. 
+
+<img src="https://github.com/user-attachments/assets/b1330cad-7e60-47d1-ae09-d035a7fc7a5d" width="250" height="600">
+
+
+<img src="https://github.com/user-attachments/assets/1ea6bfbc-0012-4801-ad04-483e462d5482" width="250" height="600">
+
+
+
+
+
+> 시연영상
+
+https://github.com/user-attachments/assets/7f65e67d-89e7-4999-a0a8-fb5331f1ab09
 
 
