@@ -3,13 +3,7 @@ import UIKit
 
 
 class ModalTabelHeaderViewCell : UITableViewCell {
-    
-    let tagCell : TagCellView = {
-        let view = TagCellView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
+
     let mainImage : UIImageView = {
        let mainImage = UIImageView()
         mainImage.translatesAutoresizingMaskIntoConstraints = false
@@ -84,13 +78,11 @@ class ModalTabelHeaderViewCell : UITableViewCell {
     // 타이틀
     let titleLabel : UILabel = {
         let label = UILabel()
-        
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Selling Sunset"
         label.font = UIFont.systemFont(ofSize: 16 , weight: .medium)
         label.textColor = .white
-        
-       return label
+        return label
     }()
     
     // 정보
@@ -107,8 +99,7 @@ class ModalTabelHeaderViewCell : UITableViewCell {
         let tvma = UIImageView()
         tvma.translatesAutoresizingMaskIntoConstraints = false
         tvma.image = UIImage(named: "tv-ma")
-
-       return tvma
+        return tvma
     }()
     
     let season : UILabel = {
@@ -120,7 +111,6 @@ class ModalTabelHeaderViewCell : UITableViewCell {
         return label
     }()
     
-    
     let vision : UIImageView = {
        let vision = UIImageView()
         vision.translatesAutoresizingMaskIntoConstraints = false
@@ -128,15 +118,13 @@ class ModalTabelHeaderViewCell : UITableViewCell {
         return vision
     }()
     
-    
     let hd : UIImageView = {
        let hd = UIImageView()
         hd.translatesAutoresizingMaskIntoConstraints = false
         hd.image = UIImage(named: "HD")
         return hd
     }()
-    
-    
+
     let ad : UIImageView = {
        let ad = UIImageView()
         ad.translatesAutoresizingMaskIntoConstraints = false
@@ -184,6 +172,7 @@ class ModalTabelHeaderViewCell : UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     // 설명
     let subtext : UILabel = {
        let label = UILabel()
@@ -194,8 +183,7 @@ class ModalTabelHeaderViewCell : UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    
+
     // myList에 추가
     let mylistButton : UIButton = {
         var config = UIButton.Configuration.filled()
@@ -217,13 +205,10 @@ class ModalTabelHeaderViewCell : UITableViewCell {
             NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.4509803653, green: 0.4509803653, blue: 0.4509803653, alpha: 1)
         ]))
         
-        
         let button = UIButton(configuration: config)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    
     
     //  따봉 버튼
     let rateButton : UIButton = {
@@ -247,38 +232,27 @@ class ModalTabelHeaderViewCell : UITableViewCell {
         text.foregroundColor = #colorLiteral(red: 0.4509803653, green: 0.4509803653, blue: 0.4509803653, alpha: 1)
         text.font = UIFont.systemFont(ofSize: 10, weight: .light)
         config.attributedTitle = text
-        
-        
+    
         let button  = UIButton(configuration: config)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         return button
     }()
-    
-    
-    
+
     // 공유
     let shareButton : UIButton = {
         var config = UIButton.Configuration.filled()
         config.background.backgroundColor = .clear
         config.imagePadding = 6
         config.imagePlacement = .top
-        
-        
-        // 이미지 추가
-        
+    
         if let image = UIImage(named: "modal_share"){
             let size = CGSize(width: 26, height: 26)
             UIGraphicsBeginImageContextWithOptions(size, false, 0.0) // 그래픽 컨텍스트 생성
             image.draw(in: CGRect(origin: .zero, size: size))
             let scaledImage = UIGraphicsGetImageFromCurrentImageContext() // 그래픽 컨텍스트에서 UIImage 객체 생성
             UIGraphicsEndImageContext() // 그래픽 컨텍스트 종료
-            
             config.image = scaledImage
-    
         }
-        
-
         // 라벨 추가
         var text = AttributedString.init("Share")
         text.foregroundColor = #colorLiteral(red: 0.4509803653, green: 0.4509803653, blue: 0.4509803653, alpha: 1)
@@ -289,10 +263,8 @@ class ModalTabelHeaderViewCell : UITableViewCell {
         let button = UIButton(configuration: config)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
-        
     }()
-    
-    
+
     // 탭바 이미지
     let tabBarImage : UIImageView = {
        let tabimage = UIImageView()
@@ -301,8 +273,7 @@ class ModalTabelHeaderViewCell : UITableViewCell {
         tabimage.contentMode = .scaleAspectFit
         return tabimage
     }()
-    
-    
+
     // 시즌 토글 라벨
     let toggleLabel : UILabel = {
         let label = UILabel()
@@ -313,23 +284,21 @@ class ModalTabelHeaderViewCell : UITableViewCell {
         return label
     }()
     
-    
-    
     // 시즌 토글 이미지
     let toggleImage : UIImageView = {
        let toggleImage = UIImageView()
         toggleImage.contentMode = .scaleAspectFit
         toggleImage.image = UIImage(named: "toggle")
-        
         toggleImage.translatesAutoresizingMaskIntoConstraints = false
-        
-      return toggleImage
+        return toggleImage
     }()
     
+    
+    //MARK: - main
     required init?(coder: NSCoder) {
         fatalError()
     }
-    //MARK: - main
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style , reuseIdentifier: "tableHeaderView")
         setUI()
@@ -447,8 +416,7 @@ class ModalTabelHeaderViewCell : UITableViewCell {
     }
 }
 
-
-
+//MARK: -  모달창 닫기
 extension ModalTabelHeaderViewCell {
     @objc func xButtonTapped(){
         NotificationCenter.default.post(name: NSNotification.Name("CloseModalNotification"), object: nil)

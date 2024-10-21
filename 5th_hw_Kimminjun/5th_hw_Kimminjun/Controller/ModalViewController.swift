@@ -7,13 +7,11 @@ class ModalViewController : UIViewController {
     var titleText : String?
     var titleImage : UIImage?
     
-    
     let tableView : UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
     
     
     //MARK: - main
@@ -46,7 +44,6 @@ class ModalViewController : UIViewController {
         tableView.register(ModalTableView.self, forCellReuseIdentifier: "modalTable")
         
     }
-    
     
     @objc func closeModal() {
             self.dismiss(animated: true, completion: nil)

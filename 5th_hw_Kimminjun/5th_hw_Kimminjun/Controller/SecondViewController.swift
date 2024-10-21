@@ -118,7 +118,6 @@ extension SecondViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let modalVC = ModalViewController()
-        
         let selectedData = SecondViewData.tablemodeling[indexPath.row]
         
         modalVC.titleText = selectedData.title

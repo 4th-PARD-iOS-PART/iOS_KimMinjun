@@ -52,7 +52,6 @@ class ModalTableView : UITableViewCell {
         contentView.addSubview(cellTimeLabel)
         contentView.addSubview(cellScriptLabel)
         
-        
         NSLayoutConstraint.activate([
             cellImage.topAnchor.constraint(equalTo: contentView.topAnchor),
             cellImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor ,constant: 16),
