@@ -3,6 +3,11 @@ import UIKit
 
 class ModalViewController : UIViewController {
     
+    
+    var titleText : String?
+    var titleImage : UIImage?
+    
+    
     let tableView : UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -22,9 +27,9 @@ class ModalViewController : UIViewController {
     func setUI(){
         view.addSubview(tableView)
         tableView.backgroundColor = .white
-        let modalHeaderView = ModalTabelHeaderView()
-        tableView.tableHeaderView  = modalHeaderView
-        
+        navigationController?.isNavigationBarHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(closeModal), name: NSNotification.Name("CloseModalNotification"), object: nil)
+
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -37,7 +42,18 @@ class ModalViewController : UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .black
+        tableView.register(ModalTabelHeaderViewCell.self, forCellReuseIdentifier: "tableHeaderView")
         tableView.register(ModalTableView.self, forCellReuseIdentifier: "modalTable")
+        
+    }
+    
+    
+    @objc func closeModal() {
+            self.dismiss(animated: true, completion: nil)
+        }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -46,10 +62,25 @@ class ModalViewController : UIViewController {
 //MARK: -tableView extension
 extension ModalViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        if section == 0 {
+            return 1
+        }
+        return ModalViewData.modalModeling.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "tableHeaderView", for: indexPath)as?
+                    ModalTabelHeaderViewCell else{
+                return UITableViewCell()
+            }
+        
+            cell.mainImage.image = titleImage
+            cell.titleLabel.text = titleText
+            return cell
+        }
+
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "modalTable", for: indexPath) as? ModalTableView else{ return UITableViewCell() }
         
         let imageName = ModalViewData.modalModeling[indexPath.row].image
@@ -60,9 +91,14 @@ extension ModalViewController : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 700
+        }
         return 130
     }
     
@@ -75,5 +111,8 @@ extension ModalViewController : UITableViewDelegate, UITableViewDataSource {
         maskLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 0, dy: verticalPadding/2)
         cell.layer.mask = maskLayer
     }
+    
+
 
 }
+
