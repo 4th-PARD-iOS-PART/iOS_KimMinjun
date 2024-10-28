@@ -40,8 +40,9 @@ class ModalViewController : UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .black
-        tableView.register(ModalTabelHeaderViewCell.self, forCellReuseIdentifier: "tableHeaderView")
+        
         tableView.register(ModalTableView.self, forCellReuseIdentifier: "modalTable")
+        tableView.register(ModalTabelHeaderViewCell.self, forCellReuseIdentifier: "tableHeaderView")
         
     }
     
