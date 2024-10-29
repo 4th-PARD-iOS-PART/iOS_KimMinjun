@@ -33,13 +33,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setTable()
-        addButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        clickedButton()
         getData()
         
     }
     
+    
+    func clickedButton(){
+        addButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+    }
+    
     @objc func tapButton(){
-        let vc = ModalViewController()
+        let vc = AddViewController()
         self.present(vc, animated: true)
         
     }
@@ -98,7 +103,12 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailViewController()
+        let passData = member[indexPath.row]
         
+        vc.name = passData.name
+        vc.part = passData.part
+        vc.age = passData.age
+    
         self.present(vc,animated: true)
     }
     
