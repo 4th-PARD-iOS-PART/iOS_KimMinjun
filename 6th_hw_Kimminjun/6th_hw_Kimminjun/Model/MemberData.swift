@@ -8,8 +8,14 @@
 import Foundation
 
 
+struct ApiResponse: Codable {
+    let status: String
+    let data: [MemberData]
+}
+
 struct MemberData : Codable {
-    var part : String?
-    var name : String?
-    var age : Int?
+    var id : Int?
+    var name : String
+    var part : String
+    var age : Int
 }
