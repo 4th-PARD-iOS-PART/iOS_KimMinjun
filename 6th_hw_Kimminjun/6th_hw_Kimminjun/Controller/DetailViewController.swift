@@ -3,9 +3,9 @@ import UIKit
 
 class DetailViewController : UIViewController {
    
-    var name : String = ""
-    var age : Int = 0
-    var part : String = ""
+    var name : String?
+    var age : Int?
+    var part : String?
     
     let nameLabel : UILabel = {
         let label = UILabel()
@@ -50,14 +50,18 @@ class DetailViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setUI()
         setValue()
+        setUI()
+       
     }
     
     func setValue(){
+        
         nameLabel.text = name
-        partLabel.text = part
-        ageLabel.text = "\(String(age))"
+        guard let part = part else {return}
+        partLabel.text = "part: \(part)"
+        guard let age = age else {return}
+        ageLabel.text = "age : \(String(age))"
     }
     
     func setUI() {

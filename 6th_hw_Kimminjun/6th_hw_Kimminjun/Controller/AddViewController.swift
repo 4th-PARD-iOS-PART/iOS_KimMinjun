@@ -4,6 +4,8 @@ import UIKit
 
 class AddViewController : UIViewController {
     
+    var viewController : ViewController?
+    
     var nameField : UITextField = {
         let textField = UITextField()
         textField.textColor = .black
@@ -54,6 +56,16 @@ class AddViewController : UIViewController {
     }
     
     @objc func addButtonClicked(){
+        
+        guard let name = nameField.text,
+              let part = partField.text,
+              let ageStr = ageField.text,
+              let age = Int(ageStr)
+        else { return }
+        
+        let user = MemberData(name: name, part: part, age: age)
+        guard let viewController = viewController else {return}
+        postData(mem : user , vc: viewController)
         dismiss(animated: true)
     }
     
@@ -62,8 +74,7 @@ class AddViewController : UIViewController {
         view.addSubview(partField)
         view.addSubview(ageField)
         view.addSubview(addButton)
-        
-        
+    
         NSLayoutConstraint.activate([
             nameField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
             nameField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor ,constant: 10),
@@ -77,7 +88,6 @@ class AddViewController : UIViewController {
             ageField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor ,constant: 10),
             ageField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             
-            
             addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor , constant: -20),
             
@@ -87,3 +97,43 @@ class AddViewController : UIViewController {
     }
 }
 
+extension AddViewController {
+    func postData(mem : MemberData ,vc : ViewController){
+        guard let url = URL(string: "http://ec2-13-209-3-68.ap-northeast-2.compute.amazonaws.com:8080/user")
+        else {
+            print("🚨Not Invailed URL")
+            return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do{
+            let encoder = JSONEncoder()
+            let jsonData = try encoder.encode(mem)
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error  {
+                    print("🚨 Error: \(error.localizedDescription)")
+                    return
+                }
+                
+                if let data = data {
+                    print("✅Response: \(String(decoding: data, as: Unicode.UTF8.self))")
+                    DispatchQueue.main.async{
+                        
+                        vc.getData()
+                        vc.tableView.reloadData()
+                    }
+                    
+                }
+            }
+            task.resume()
+        }catch {
+            print("🚨 error",error)
+        }
+    }
+    
+    
+}

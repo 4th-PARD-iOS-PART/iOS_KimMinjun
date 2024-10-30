@@ -6,6 +6,7 @@ class ViewController: UIViewController {
 
     var member : [MemberData] = []
     let baseURL = "http://ec2-13-209-3-68.ap-northeast-2.compute.amazonaws.com:8080"
+    
     let titleLabel : UILabel = {
         let label = UILabel()
         label.text = "Url Session"
@@ -45,6 +46,7 @@ class ViewController: UIViewController {
     
     @objc func tapButton(){
         let vc = AddViewController()
+        vc.viewController = self
         self.present(vc, animated: true)
         
     }
