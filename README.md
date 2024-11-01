@@ -1,21 +1,29 @@
-# 과제 5 입니다 
+
+
+
+# 과제 6 입니다 
 ---
 
 iPhone 16 Pro로 시뮬레이터 돌렸습니다. 
 
-SecondViewController의 tableview의 cell을 클릭시 데이터를 가져와서 모달창을 뜨게 했습니다. 
+## 메인 창입니다 GET을 하여 데이터를 불러왔습니다.
 
-<img src="https://github.com/user-attachments/assets/b1330cad-7e60-47d1-ae09-d035a7fc7a5d" width="250" height="600">
-
-
-<img src="https://github.com/user-attachments/assets/1ea6bfbc-0012-4801-ad04-483e462d5482" width="250" height="600">
+<img src="https://github.com/user-attachments/assets/16527b74-c353-483d-82ec-b0818edc9890" width="250" height="600">
 
 
 
 
 
-> 시연영상
 
-https://github.com/user-attachments/assets/7f65e67d-89e7-4999-a0a8-fb5331f1ab09
+## 추가하기 버튼을 눌렀을 때의 창입니다. POST로 데이터를 전송했습니다.
+<img src="https://github.com/user-attachments/assets/2253483b-3f77-47b9-908c-b40e802ac731" width="250" height="600">
+
+
+
+## 테이블 뷰의 셀을 눌렀을때 뜨는 창 입니다. 추후 DELETE와 PUT 기능을 추가할 예정입니다. 
+<img src="https://github.com/user-attachments/assets/f55e5672-b7c3-4344-b6c9-7d6bdc3aa2c1" width="250" height="600">
+
+
+
 
 
