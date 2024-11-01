@@ -5,6 +5,7 @@ import UIKit
 class AddViewController : UIViewController {
     
     var viewController : ViewController?
+    let apiService = APIService()
     
     var nameField : UITextField = {
         let textField = UITextField()
@@ -65,7 +66,7 @@ class AddViewController : UIViewController {
         
         let user = MemberData(name: name, part: part, age: age)
         guard let viewController = viewController else {return}
-        postData(mem : user , vc: viewController)
+        addMember(member: user , vc: viewController)
         dismiss(animated: true)
     }
     
@@ -97,43 +98,18 @@ class AddViewController : UIViewController {
     }
 }
 
+//MARK: - API
 extension AddViewController {
-    func postData(mem : MemberData ,vc : ViewController){
-        guard let url = URL(string: "http://ec2-13-209-3-68.ap-northeast-2.compute.amazonaws.com:8080/user")
-        else {
-            print("🚨Not Invailed URL")
-            return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        do{
-            let encoder = JSONEncoder()
-            let jsonData = try encoder.encode(mem)
-            request.httpBody = jsonData
-            
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let error = error  {
-                    print("🚨 Error: \(error.localizedDescription)")
-                    return
-                }
-                
-                if let data = data {
-                    print("✅Response: \(String(decoding: data, as: Unicode.UTF8.self))")
-                    DispatchQueue.main.async{
-                        
+
+    func addMember(member: MemberData , vc: ViewController) {
+            apiService.postMemberData(member: member) { success in
+                if success {
+                    DispatchQueue.main.async {
                         vc.getData()
                         vc.tableView.reloadData()
                     }
-                    
                 }
             }
-            task.resume()
-        }catch {
-            print("🚨 error",error)
         }
-    }
-    
     
 }

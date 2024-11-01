@@ -2,10 +2,8 @@
 import UIKit
 
 class DetailViewController : UIViewController {
-   
-    var name : String?
-    var age : Int?
-    var part : String?
+
+    var member : MemberData?
     
     let nameLabel : UILabel = {
         let label = UILabel()
@@ -52,16 +50,19 @@ class DetailViewController : UIViewController {
         view.backgroundColor = .white
         setValue()
         setUI()
+        deleteButton.addTarget(self, action: #selector(deleteMember), for: .touchUpInside)
+        editButton.addTarget(self, action: #selector(editMember), for: .touchUpInside)
        
     }
     
+    
+    
     func setValue(){
-        
-        nameLabel.text = name
-        guard let part = part else {return}
-        partLabel.text = "part: \(part)"
-        guard let age = age else {return}
-        ageLabel.text = "age : \(String(age))"
+        guard let member = member else {return}
+    
+        nameLabel.text = member.name
+        partLabel.text = "part: \(member.part)"
+        ageLabel.text = "age : \(String(member.age))"
     }
     
     func setUI() {
@@ -90,4 +91,13 @@ class DetailViewController : UIViewController {
             
         ])
     }
+    
+    @objc func deleteMember(){
+        
+    }
+    
+    @objc func editMember(){
+        
+    }
 }
+

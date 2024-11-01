@@ -5,7 +5,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var member : [MemberData] = []
-    let baseURL = "http://ec2-13-209-3-68.ap-northeast-2.compute.amazonaws.com:8080"
+    let apiService = APIService()
     
     let titleLabel : UILabel = {
         let label = UILabel()
@@ -106,49 +106,27 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailViewController()
         let passData = member[indexPath.row]
-        
-        vc.name = passData.name
-        vc.part = passData.part
-        vc.age = passData.age
-    
+        vc.member = passData
+
         self.present(vc,animated: true)
     }
     
 }
 
 
-//MARK: - API 코드
+//MARK: - API 
 extension ViewController {
     
     func getData() {
-        guard let url = URL(string: "\(baseURL)/user?part=all") else {
-           print("🚨 url error")
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("Error : \(error.localizedDescription)")
-                return
-            }
-            
-            if let data = data {
-                do{
-                    let user = try JSONDecoder().decode([MemberData].self , from: data)
-                    
-                    self.member = user
+        apiService.fetchMembers { [weak self] members in
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                        if let members = members {
+                            self?.member = members
+                            self?.tableView.reloadData()
+                        }
                     }
-                } catch {
-                    print("Decoding error: \(error)")
                 }
-            }
-        }.resume()
-        
     }
-    
-    
     
     
 }
