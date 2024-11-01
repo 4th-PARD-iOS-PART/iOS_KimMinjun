@@ -65,7 +65,7 @@ class APIService {
         
     
     
-    func putMemberData(memberID: String, member: MemberData, completion: @escaping (Bool) -> Void) {
+    func patchMemberData(memberID: Int , member: MemberData, completion: @escaping (Bool) -> Void) {
           guard let url = URL(string: "\(baseURL)/user/\(memberID)") else {
               print("🚨 Invalid URL")
               completion(false)
@@ -74,7 +74,7 @@ class APIService {
           
           do {
               let jsonData = try JSONEncoder().encode(member)
-              NetworkManager.shared.requestData(url: url, method: "PUT", body: jsonData) { data, error in
+              NetworkManager.shared.requestData(url: url, method: "PATCH", body: jsonData) { data, error in
                   if let error = error {
                       print("🚨 Error: \(error.localizedDescription)")
                       completion(false)
@@ -89,7 +89,7 @@ class APIService {
           }
       }
       
-    func deleteMember(memberID: String, completion: @escaping (Bool) -> Void) {
+    func deleteMember(memberID: Int , completion: @escaping (Bool) -> Void) {
           guard let url = URL(string: "\(baseURL)/user/\(memberID)") else {
               print("🚨 Invalid URL")
               completion(false)

@@ -105,9 +105,11 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailViewController()
+        
         let passData = member[indexPath.row]
+        
         vc.member = passData
-
+        vc.viewcontroller = self
         self.present(vc,animated: true)
     }
     
