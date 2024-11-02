@@ -38,7 +38,7 @@ class DetailViewController : UIViewController {
     }()
     
     let editButton : UIButton = {
-        let button = UIButton()
+        let button = UIButton() 
         button.setTitle("Edit", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.setTitleColor(.blue, for: .normal)
@@ -61,7 +61,7 @@ class DetailViewController : UIViewController {
     
     func setValue(){
         guard let member = member else {return}
-    
+        print(member)
         nameLabel.text = member.name
         partLabel.text = "part: \(member.part)"
         ageLabel.text = "age : \(String(member.age))"
@@ -103,9 +103,11 @@ class DetailViewController : UIViewController {
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
             guard let memberID = self.member?.id else { return }  // member의 ID를 가져옵니다.
             guard let vc = self.viewcontroller else { return }
-            self.apiService.deleteMember(memberID: memberID) { success in
+            self.apiService.deleteMember(id: memberID) { success in
                 if success {
+                
                     DispatchQueue.main.async {
+                        print(memberID)
                         print("✅ Member deleted successfully")
                         vc.getData()
                         vc.tableView.reloadData()
@@ -158,6 +160,7 @@ class DetailViewController : UIViewController {
                    }
                    
                    guard let memberID = member.id else { return }
+                   print(memberID)
                    guard let vc = self.viewcontroller else { return }
                    
                    let updatedMember = MemberData(id : memberID, name: name, part: part, age: age)
@@ -187,4 +190,5 @@ class DetailViewController : UIViewController {
 
     }
 }
+
 

@@ -3,7 +3,9 @@ import Foundation
 
 class APIService {
     private let baseURL = "http://ec2-13-209-3-68.ap-northeast-2.compute.amazonaws.com:8080"
+
     
+    //MARK: - GET 
     func fetchMembers(completion: @escaping ([MemberData]?) -> Void) {
             guard let url = URL(string: "\(baseURL)/user?part=all") else {
                 print("🚨 Invalid URL")
@@ -64,10 +66,11 @@ class APIService {
         }
         
     
-    
+    //MARK: - PATCH
     func patchMemberData(memberID: Int , member: MemberData, completion: @escaping (Bool) -> Void) {
           guard let url = URL(string: "\(baseURL)/user/\(memberID)") else {
               print("🚨 Invalid URL")
+              
               completion(false)
               return
           }
@@ -80,7 +83,7 @@ class APIService {
                       completion(false)
                       return
                   }
-                  
+                  print("patch 성공")
                   completion(true)
               }
           } catch {
@@ -88,9 +91,10 @@ class APIService {
               completion(false)
           }
       }
-      
-    func deleteMember(memberID: Int , completion: @escaping (Bool) -> Void) {
-          guard let url = URL(string: "\(baseURL)/user/\(memberID)") else {
+    
+    //MARK: - DELETE
+    func deleteMember(id: Int , completion: @escaping (Bool) -> Void) {
+          guard let url = URL(string: "\(baseURL)/user/\(id)") else {
               print("🚨 Invalid URL")
               completion(false)
               return
